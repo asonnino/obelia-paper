@@ -1,0 +1,31 @@
+.vscode/
+
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.lot
+*.lof
+*.dvi
+*.pdfsync
+*.synctex.gz
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*~
+*.bak
+*.swp
+
+# Other files to ignore
+*.fdb_latexmk
+*.fls
+*.pdf
+*.synctex
+.DS_Store  # macOS specific
+Thumbs.db  # Windows specific

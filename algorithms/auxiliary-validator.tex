@@ -1,0 +1,19 @@
+\begin{algorithm}[t]
+    \caption{Auxiliary Validator}
+    \label{alg:auxiliary-validator}
+    \scriptsize
+
+    \begin{algorithmic}[1]
+        \State $T \gets \{ \; \}$ \Comment{Buffer client transactions}
+        \State $\dag_c \gets \{ \; \}$ \Comment{DAG of core vertices}
+
+        \Statex
+        \Procedure{TryAdvance}{\;}
+        \State $p \gets \Call{TryNewProposal}{T, \dag_c}$
+        \If{$p = \perp$} \Return \EndIf
+        \State $\{ \sigma_{(p,i)} \} \gets \Call{SendToCoreValidators}{p}$
+        \State $v' \gets \Call{AssembleCertificate}{\{ \sigma_{(p,i)} \}}$
+        \State $\Call{SendToCoreValidators}{v'}$
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}

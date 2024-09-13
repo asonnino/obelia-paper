@@ -1,0 +1,55 @@
+\begin{algorithm}[t]
+    \caption{Core Validator}
+    \label{alg:core-validator}
+    \scriptsize
+
+    \begin{multicols}{2}
+        \begin{algorithmic}[1]
+            \State $T \gets \{ \; \}$ \Comment{Buffer client transactions}
+            \State $\dag_c \gets \{ \; \}$ \Comment{DAG of core vertices}
+            \change{\State $\dag_a \gets \{ \; \}$ \Comment{DAG of auxiliary vertices}}
+
+            \Statex
+            \Procedure{ProcessCoreVertex}{$v$} \label{alg:line:process-core-vertex}
+            \State $\Call{SyncCoreAncestors}{v, \dag_c}$ \label{alg:line:sync-core-ancestors}
+            \change{\State $\Call{SyncAuxAncestors}{v, \dag_a}$} \label{alg:line:sync-aux-ancestors}
+            \State \require{$\Call{ValidCoreVertex}{v, \dag_c}$} \label{alg:line:valid-core-vertex}
+            \State $\Call{AddToDag}{v, \dag_c}$ \label{alg:line:add-to-dag}
+            \State $L \gets \Call{OrderNewLeaders}{\dag_c}$ \label{alg:line:commit-leaders}
+            \If{$L \neq \perp $}
+            \State $C \gets \Call{Linearize}{L, \dag_c, \change{\dag_a}}$ \label{alg:line:linearize}
+            \State $\Call{OutputToApplication}{C}$
+            \EndIf
+            \State $\Call{TryAdvance}{\;}$
+            \EndProcedure
+
+            \Statex
+            \Procedure{TryAdvance}{\;} \label{alg:line:try-advance}
+            \State $v' \gets \Call{TryNewCoreVertex}{T, \dag_c, \change{\dag_a}}$ \label{alg:line:try-new-core-vertex}
+            \If{$v' = \perp$} \Return \EndIf
+            \State $\Call{AddToDag}{v', \dag_c}$ \label{alg:line:add-to-dag-2}
+            \State $\Call{SendToCoreValidators}{v'}$ \label{alg:line:send-to-core-validators}
+            \EndProcedure
+
+            \Statex
+            \change{
+                \Procedure{ProcessAuxProposal}{$p$}
+                \State $\Call{SyncCoreAncestors}{v, \dag_c}$
+                \State \require{$Call{ValidAuxProposal}{v, \dag_c}$}
+                \State $\sigma_p \gets \Call{Sign}{p}$
+                \State $\Call{ReplyBack}{\sigma_p}$
+                \EndProcedure
+            }
+
+            \Statex
+            \change{
+                \Procedure{ProcessAuxVertex}{$v$}
+                \State $\Call{DownloadCoreAncestors}{v, \dag_c}$
+                \State \require{$\Call{ValidAuxVertex}{v, \dag_c}$}
+                \State $\Call{AddToDag}{v, \dag_a}$
+                \State $\Call{TryAdvance}{\;}$
+                \EndProcedure
+            }
+        \end{algorithmic}
+    \end{multicols}
+\end{algorithm}

@@ -1,0 +1,52 @@
+\documentclass[runningheads]{llncs}
+
+\newif\ifpublish
+\publishfalse
+
+\input{macros.tex}
+
+\begin{document}
+
+\title{\sysname: Scaling DAG-based consensus protocols to hundred of Validators}
+
+\ifpublish
+    \author{
+        First Author\inst{1}\orcidID{0000-1111-2222-3333} \and
+        Second Author\inst{2,3}\orcidID{1111-2222-3333-4444} \and
+        Third Author\inst{3}\orcidID{2222--3333-4444-5555}
+    }
+    \authorrunning{F. Author et al.}
+    \institute{
+        Princeton University, Princeton NJ 08544, USA \and
+        Springer Heidelberg, Tiergartenstr. 17, 69121 Heidelberg, Germany \and
+        ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany
+    }
+\else
+    \author{}
+    \institute{}
+\fi
+
+\maketitle
+
+\begin{abstract}
+    \input{sections/abstract.tex}
+    \keywords{Blockchain \and BFT Consensus \and Dynamic Participation}
+\end{abstract}
+
+\input{sections/introduction.tex}
+\input{sections/overview.tex}
+\input{sections/design.tex}
+\input{sections/evaluation.tex}
+\input{sections/related.tex}
+
+\ifpublish
+    \begin{credits}
+        \subsubsection{\ackname}
+        This work is supported by Mysten Labs.
+    \end{credits}
+\fi
+
+\bibliographystyle{splncs04}
+\bibliography{references}
+
+\end{document}

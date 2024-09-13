@@ -1,0 +1,27 @@
+\section{Introduction}
+
+%%% Short intro about the field
+Blockchains using BFT quorum systems~\cite{sui,aptos,solana} divide time into 24-hour epochs, where a committee of about 100 \emph{validators}, elected through a Sybil-resistant mechanism~\cite{douceur2002sybil} (often a variant of proof-of-stake)~\cite{kucci2021proof}, operates the system using a BFT consensus protocol~\cite{pbft,jolteon,mysticeti}. Their voting power correlates with their stake, allowing agreement on blocks of client transactions. Recent advancements in BFT protocols utilize directed acyclic graphs (DAG)~\cite{narwhal,bullshark,shoal++,mysticeti,sailfish,bbca-chain,gradeddag,cordial-miners}, achieving high throughput (100k tx/s) and robustness against faults and network asynchrony~\cite{consensus-dos,narwhal}.
+
+%%% Shortcomings of existing systems
+However, these consensus protocols limit operation to approximately 100 validators, sidelining many potential participants---often in the hundreds~\cite{sui-scan}. This exclusion is a sharp contrast to more traditional blockchains like Bitcoin~\cite{bitcoin} and Ethereum~\cite{ethereum}, which engage all participants, and is responsible of key weaknesses of quorum-based blockchains.
+First, only the subset of the total stake hold by these validators can be used to secure and benefit the blockchain ecosystem. Lower-stake players cannot participate in block proposals and typically run full nodes without incentives~\cite{krol2024disc}.
+Second the high throughput of DAG-based systems complicates state catch-up for new or crash-recovering validators, who either strain the committee's resources or depend on external unincentivized entities for recovery.
+
+%%% Protocol overview and discussion of the identified technical challenges
+This paper introduces \sysname, an enhancement to DAG-based consensus that increases participation by enabling all stakeholders to sporadically author blocks. It incentivizes these participants to assist recovering validators and integrates seamlessly with existing protocols. However, developing \sysname involves overcoming significant challenges.
+(1) \sysname must avoid all-to-all communications between stakeholders as their large number makes it impractical.
+(2) Furthermore, it cannot rely on a classic BFT assumption for entities that have less stake and thus less incentive to be reliable. This challenge results from the inherent poor reliability of these slow-stake entities that can be offline for long periods of time. \sysname must ensure that all data they contribute to the chain remains available. Where traditional systems rely on monetary penalties to disincentivise unreliability~\cite{he2023don} by assuming network synchrony, \sysname cannot follow this guidance as it aims to operate in the weaker asynchronous or partially synchronous network model of existing quorum-based protocols.
+(3) The final challenge consists in allowing these low-stake entities to participate in the consensus without slowing it down, as this would compromise the major benefit of quorum-based systems.
+
+%%% Implementation plus evaluation summary
+\alberto{TODO: Add a sentence about the evaluation}
+
+%%% Contributions
+\para{Contributions}
+This paper makes the following contributions:
+\begin{itemize}
+      \item We present \sysname, a novel mechanism enhancing DAG-based protocols, enabling all stakeholders to engage in consensus and incentivizing support for recovering validators.
+      \item We demonstrate \sysname's safety and liveness within the same network model as underlying quorum-based protocols.
+      \item We implement and evaluate \sysname on a realistic geo-distributed testbed, showing it adds negligible overhead while maintaining the original consensus protocol's speed.
+\end{itemize}
