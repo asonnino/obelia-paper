@@ -25,7 +25,7 @@
 # Other files to ignore
 *.fdb_latexmk
 *.fls
-*.pdf
+main.pdf
 *.synctex
 .DS_Store  # macOS specific
 Thumbs.db  # Windows specific
