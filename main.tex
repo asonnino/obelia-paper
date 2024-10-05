@@ -7,7 +7,8 @@
 
 \begin{document}
 
-\title{\sysname: Scaling DAG-based consensus protocols to hundred of Validators}
+\title{Short Paper: \sysname: Scaling DAG-based consensus protocols to hundreds of Validators}
+\titlerunning{\sysname}
 
 \ifpublish
     \author{
@@ -30,14 +31,16 @@
 
 \begin{abstract}
     \input{sections/abstract.tex}
-    \keywords{Blockchain \and BFT Consensus \and Dynamic Participation}
+    \ifpublish
+        \keywords{Blockchain \and BFT Consensus \and Dynamic Participation}
+    \fi
 \end{abstract}
 
 \input{sections/introduction.tex}
 \input{sections/overview.tex}
 \input{sections/design.tex}
 \input{sections/evaluation.tex}
-\input{sections/related.tex}
+% \input{sections/related.tex}
 
 \ifpublish
     \begin{credits}

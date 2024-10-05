@@ -1,0 +1,17 @@
+- ping latency from 50 to 250ms
+- 10 nodes (3 faulty): core thread utilisation below 10%
+- 50 nodes (0 faulty), load of 400k tx/s: 
+	- core thread utilisation below 60%
+	- memory usage below 15GB
+	- all CPU cores below 10% and one below 30% (probably load gen)
+
+- 100 nodes (0 faulty), 1 leader per round:
+	- 400k tx/s:
+		- CPU utilisation: all <13%, except one that is at 50%
+		- memory: <30 GB
+	- 100k tx/s:
+		- CPU utilisation: all <10%, except one that is at 50%
+		- memory: < 20 GB
+	- 10k tx/s:
+		- CPU utilisation: all <7%, except one that is at 20%
+		- memory: <10 GB

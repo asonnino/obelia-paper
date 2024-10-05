@@ -33,7 +33,7 @@
 
             \Statex
             \change{
-                \Procedure{ProcessAuxProposal}{$p$}
+                \Procedure{ProcessAuxProposal}{$p$} \label{alg:line:process-aux-proposal}
                 \State $\Call{SyncCoreAncestors}{v, \dag_c}$
                 \State \require{$Call{ValidAuxProposal}{v, \dag_c}$}
                 \State $\sigma_p \gets \Call{Sign}{p}$
@@ -43,7 +43,7 @@
 
             \Statex
             \change{
-                \Procedure{ProcessAuxVertex}{$v$}
+                \Procedure{ProcessAuxVertex}{$v$} \label{alg:line:process-aux-vertex}
                 \State $\Call{DownloadCoreAncestors}{v, \dag_c}$
                 \State \require{$\Call{ValidAuxVertex}{v, \dag_c}$}
                 \State $\Call{AddToDag}{v, \dag_a}$
