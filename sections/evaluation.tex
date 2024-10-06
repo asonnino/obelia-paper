@@ -1,5 +1,5 @@
 \section{Implementation and Evaluation} \label{sec:evaluation}
-We implement \sysname as a fork of Mysticeti~\cite{mysticeti} and evaluate it on a geo-distributed AWS testbed. We use the same setup as the Mysticeti paper~\cite{mysticeti}\footnote{
+We implement\footnote{\codelink} \sysname as a fork of Mysticeti~\cite{mysticeti} and evaluate it on a geo-distributed AWS testbed. We use the same setup as the Mysticeti paper~\cite{mysticeti}\footnote{
     13 different AWS regions; \texttt{m5.8xlarge} instances (with 32 vCPUs, 128GB RAM, and 10Gbps network); 512 bytes transactions; each data point is the average latency and error bar represent one stdev; benchmarks run for multiple minutes under fixed load.
 } and only test for loads up to 50k tx/s to limit costs. We set $t_a = 10\%$ (\Cref{sec:model}) and auxiliary validators propose blocks every few seconds.
 We use the notation M-$X$ to indicate Mysticeti running with $X$ validators, and \sysname-$X$-$Y$ to indicate \sysname running with $X$ core validators and $Y$ auxiliary validators.

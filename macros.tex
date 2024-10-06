@@ -14,6 +14,15 @@
 \usepackage{breakcites}
 \usepackage[font=footnotesize]{caption}
 
+%%% References
+\newcommand{\codelink}{
+    \ifpublish
+        \url{https://github.com/asonnino/mysticeti/tree/obelia} (commit \texttt{fe74642})
+    \else
+        Code available but link omitted for blind review.
+    \fi
+}
+
 %%% Comments
 \newcommand{\alberto}[1]{\textcolor{blue}{\textbf{Alberto:} #1}}
 
