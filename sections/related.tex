@@ -1,5 +1,4 @@
 \section{Discussion and Related Work} \label{sec:related}
-\alberto {
-    Things for a discussion section: (1) Disaster Recovery, you can bow leverage the auxiliary stake to choose the heaviest fork. (2) Link to OFlex as related work. This can also be used in that way although it was not designed for it. (3) Incentives for full nodes. Nodes operators typically have stake and are in a waiting list to become validators, while they wait they are not remunerated; \sysname can help to be a source of remuneration for them. (4) GC round disincentivises auxiliary validators from always proposing blocks linking to old blocks.
-}
-
+To the best of our knowledge, \sysname has no close related work. However, it draws inspiration from DagRider's weak links~\cite{dag-rider}, which include older blocks not required for leader selection (although for different reasons than \sysname), and Narwhal's vertex-creation rule~\cite{narwhal}, which ensures vertex availability before inclusion in the DAG.
+%
+Future work include the analysis of \sysname where auxiliary validators operated under the sleepy model~\cite{pass2017sleepy} to explore potential improvements in censorship resistance; whether auxiliary validators can enhance the protocol's safety for clients who trade latency, as in OFlex~\cite{malkhi2019flexible, oflex}; and whether they can aid in fork recovery when more than $f$ Byzantine core validators are present. Lastly, we leave as future work the details of the incentive mechanisms to encourage full nodes to participate as auxiliary validators in \sysname.

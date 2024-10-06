@@ -35,7 +35,7 @@
             \change{
                 \Procedure{ProcessAuxProposal}{$p$} \label{alg:line:process-aux-proposal}
                 \State $\Call{SyncCoreAncestors}{v, \dag_c}$
-                \State \require{$Call{ValidAuxProposal}{v, \dag_c}$}
+                \State \require{$\Call{ValidAuxProposal}{v, \dag_c}$}
                 \State $\sigma_p \gets \Call{Sign}{p}$
                 \State $\Call{ReplyBack}{\sigma_p}$
                 \EndProcedure
